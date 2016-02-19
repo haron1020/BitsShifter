@@ -17,7 +17,6 @@ class BitsShifter {
     }
 public:
     void replaceBitByIndex(int arg, int index) {
-//        T temp = 1 << index;
         T temp = 0;
         ((char*)(&temp))[index / 8] = (((char*)(&temp))[index / 8]) | (1 << index);
         if (arg == 1) {
@@ -34,14 +33,7 @@ public:
     bool findBitByIndex(int index) {
         return (((char *)(&data))[index / 8] >> (index % 8)) & 1;
     }
-    
-//    void leftShiftGroup(int startIndex, int endIndex, int times) {
-//        for (int i = 0; i < times; ++i) {
-//            for (int j = 0; j < abs(startIndex - endIndex); ++j) {
-//                <#statements#>
-//            }
-//        }
-//    }
+
     
     BitsShifter(): data{0} { }
     BitsShifter(T arg): data{arg} { }
