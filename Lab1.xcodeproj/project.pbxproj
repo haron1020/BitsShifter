@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BA0138681C64D19400C93093 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA0138671C64D19400C93093 /* main.cpp */; };
+		BA5C6BB21C7F986800C4037A /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA5C6BB01C7F986800C4037A /* Utility.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,7 +26,9 @@
 /* Begin PBXFileReference section */
 		BA0138641C64D19400C93093 /* Lab1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Lab1; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA0138671C64D19400C93093 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		BA6DC0AE1C76374900F70D8F /* BitsShifter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BitsShifter.hpp; sourceTree = "<group>"; };
+		BA5C6BB01C7F986800C4037A /* Utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utility.cpp; sourceTree = "<group>"; };
+		BA5C6BB11C7F986800C4037A /* Utility.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utility.hpp; sourceTree = "<group>"; };
+		BA5C6BB41C7F987300C4037A /* BitsShifter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BitsShifter.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +62,9 @@
 			isa = PBXGroup;
 			children = (
 				BA0138671C64D19400C93093 /* main.cpp */,
-				BA6DC0AE1C76374900F70D8F /* BitsShifter.hpp */,
+				BA5C6BB01C7F986800C4037A /* Utility.cpp */,
+				BA5C6BB11C7F986800C4037A /* Utility.hpp */,
+				BA5C6BB41C7F987300C4037A /* BitsShifter.hpp */,
 			);
 			path = Lab1;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA5C6BB21C7F986800C4037A /* Utility.cpp in Sources */,
 				BA0138681C64D19400C93093 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
