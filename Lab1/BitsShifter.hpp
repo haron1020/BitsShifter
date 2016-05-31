@@ -54,6 +54,7 @@ void rightGroupShift(void* data, int start, int end, int times) {
 
 template <typename T>
 void leftGroupShift(void* data, int start, int end, int times) {
+    bool (*findBitByIndexPtr)(void*, int) = &findBitByIndex;
     for (int i = 0; i < times; ++i) {
         auto temp = findBitByIndex(data, end);
         for(int j = end; j >= start; --j) {
@@ -74,14 +75,20 @@ T readAndPrint() {
     std::cout<<"Input data: ";
     auto typeName = typeid(T).name();
     if (typeName == typeid(double).name() || typeName == typeid(float).name()) {
+        double (*safeDoubleInputPtr)() = &safeDoubleInput;
+        std::cout<<"safeDoubleInputPtr address: "<<&safeDoubleInputPtr<<std::endl;
         arg = safeDoubleInput();
-        std::cout<<std::setprecision(25);
+        std::cout<<std::setprecision(15);
     } else if (typeName == typeid(short).name() || typeName == typeid(int).name() || typeName == typeid(long long).name())  {
+        int (*safeIntInputPtr)() = &safeIntInput;
+        std::cout<<"safeIntInputPtr address: "<<&safeIntInputPtr<<std::endl;
         arg = safeIntInput();
     } else if (typeName == typeid(char).name()) {
         std::cin>>arg;
     } else return 0;
     std::cout<<"Data: "<<arg<<std::endl;
+    void (*showbitsPtr)(void*, int) = &showBits;
+    std::cout<<"showBits address: "<<&showbitsPtr<<std::endl;
     showBits(&arg, sizeof(T));
     return arg;
 }
@@ -93,9 +100,13 @@ void doProgram(T arg) {
     int howMuch = 0;
     bool inputIsInvalid = true;
     while (inputIsInvalid) {
+        int (*safeIntInputPtr)() = &safeIntInput;
+        std::cout<<"safeIntInputPtr address: "<<&safeIntInputPtr<<std::endl;
         std::cout<<"Введите начальный индекс группы: ";
         start = safeIntInput();
         std::cout<<"Введите конечный индекс группы: ";
+        safeIntInputPtr = &safeIntInput;
+        std::cout<<"safeIntInputPtr address: "<<&safeIntInputPtr<<std::endl;
         end = safeIntInput();
         if (checkIndexes<T>(start, end)) {
             inputIsInvalid = false;
@@ -104,6 +115,8 @@ void doProgram(T arg) {
     inputIsInvalid = true;
     while (inputIsInvalid) {
         std::cout<<"На сколько бит сдвигать?: ";
+        int (*safeIntInputPtr)() = &safeIntInput;
+        std::cout<<"safeIntInputPtr address: "<<&safeIntInputPtr<<std::endl;
         howMuch = safeIntInput();
         if (howMuch >= 0) {
             inputIsInvalid = false;
@@ -130,6 +143,28 @@ void doProgram(T arg) {
     }
     showBits(&arg, sizeof(T));
     std::cout<<"Преобразованное число: "<<arg<<std::endl;
-    
 }
 
+template <typename T>
+void __printInputFunctionsAddress() {
+    void (*doProgramPtr)(T) = &doProgram<T>;
+    T (*readAndPrintPtr)() = &readAndPrint<T>;
+    std::cout<<"readAndPrint address: "<<&readAndPrintPtr<<std::endl;
+    std::cout<<"doProgram address: "<<&doProgramPtr<<std::endl;
+}
+
+template <typename T>
+void __leftGroupAndRightGroupShiftAddress() {
+    void (*leftGroupShiftPtr)(void *, int, int, int) = &leftGroupShift<T>;
+    void (*rightGroupShiftPtr)(void *, int, int, int) = &rightGroupShift<T>;
+    
+    std::cout<<"leftGroupShiftAddress: "<<&leftGroupShiftPtr<<std::endl;
+    std::cout<<"rightGroupShiftAddress: "<<&rightGroupShiftPtr<<std::endl;
+}
+
+template <typename T>
+void __service(mainPtr main) {
+    __leftGroupAndRightGroupShiftAddress<T>();
+    __printInputFunctionsAddress<T>();
+    std::cout<<"main address: "<<&main<<std::endl;
+}

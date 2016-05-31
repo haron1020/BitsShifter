@@ -8,3 +8,5 @@
 
 double safeDoubleInput();
 int safeIntInput();
+
+typedef int (*mainPtr)(int, const char **);
